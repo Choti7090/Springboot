@@ -1,0 +1,25 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class EmployyeEx 
+{
+	public static void main(String[] args) 
+	{
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connection=
+					DriverManager.getConnection("jdbc:mysql://localhost:3306/empdb", "root", "root");
+			PreparedStatement prepareStatement = connection.prepareStatement("insert into employee values(?,?)");
+			prepareStatement.setInt(1, 101);
+			prepareStatement.setString(2, "pavvi");
+			prepareStatement.execute();
+			connection.close();
+		} 
+		catch (ClassNotFoundException | SQLException e) 
+		{
+			e.printStackTrace();
+		}
+	}
+}
